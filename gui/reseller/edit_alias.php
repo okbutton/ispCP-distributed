@@ -30,9 +30,6 @@ $tpl -> define_dynamic('page_message', 'page');
 
 $tpl -> define_dynamic('logged_from', 'page');
 
-$tpl -> define_dynamic('custom_buttons', 'page');
-
-global $cfg;
 $theme_color = $cfg['USER_INITIAL_THEME'];
 
 
@@ -198,7 +195,7 @@ SQL_QUERY;
 //Check input data
 function check_user_data (&$tpl, $alias_id) {
 
-	global $sql;
+	global $sql,$cfg;
 
 	$forward_url = $_POST['forward'];
 
@@ -213,7 +210,7 @@ function check_user_data (&$tpl, $alias_id) {
 	if('_off_' === $ed_error){
 
 		exec_query($sql,
-               "update domain_aliasses set url_forward=?,alias_status='".STATUS_TOCHANGE."' where alias_id=?",
+               "update domain_aliasses set url_forward=?,alias_status='".$cfg['ITEM_CHANGE_STATUS']."' where alias_id=?",
                array($forward_url, $alias_id));
 		check_for_lock_file();
 		send_request();
