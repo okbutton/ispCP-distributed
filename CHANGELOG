@@ -1,9 +1,122 @@
-ispCP ω 1.1.0 Changelog
+ispCP ω 1.0.4 Changelog
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-2009-12-15 Laurent Declercq
+2009-12-29 Christian Hernmarck
+	- CONFIGS:
+		* Fixed #2136: Port 465 is missing in ispcp_network daemon
+
+2009-12-28 Marc Pujol
+	- GUI:
+		* Fixed #2135: open_basedir errors in net2ftp
+
+2009-12-27 Benedikt Heintel
+        - LANGUAGES:
+                * Updated Polish
+                * Updated Swedish
+
+2009-12-23 Benedikt Heintel
+	- GUI:
+		* Added Demo Translation Strings
+		
+2009-12-23 Marc Pujol
+	- BACKEND:
+		* Fixed #2122: Critical security bug exploitable by local users
+	
+2009-12-23 Laurent Declercq
+	- GUI:
+		* Updated TLDs list
+		* Fixed #2113: Wrong SQL syntax in /var/www/ispcp/gui/client/hosting_plan_update.php (Line: 451)
+	- CONFIGS:
+		* The file ispcp.conf should be readable by everyone. (Should be changed in 1.0.4)
+		* Added PMA_USER for recovery process during update
+	- SETUP
+		* Added recovery process for PMA configuration file
+
+2009-12-22 Marc Pujol
+	- GUI:
+		* Tightened default permission settings
+	- BACKEND:
+		* Tightened default permission settings
+
+2009-12-21 Benedikt Heintel
+	- GUI:
+		* Fixed: Password generation in order panel
+		* Fixed: Wrong oder of properties in order panel
+	- LANGUAGES:
+		* Updated Spanish
+		* Updated Turkish
+
+2009-12-21 Peter Ziergöbel
+	- GUI:
+		* Fixed #2108: Small bugs in orderpanel
+
+2009-12-21 Laurent Declercq
+	- PACKAGE:
+		* Updated "Version" in all ispcp.conf
+	- CONFIGS:
+		* CMD_PHP Must be the real path of php5-cli binary to avoid error during update
+	- GUI:
+		* Fixed - Security Fail - The files such as "ispcp.conf" and "ispcp-db-keys.php" should not be readable by other
+
+2009-12-20 Benedikt Heintel
 	- DISTS:
-		* Updated: Ubuntu INSTALL
+		* *BSD: Fixed error on make install
+	- GUI:
+		* Fixed tool tip issue in admin/settings
+	- LANGUAGES:
+		* Updated Polish
+		* Updated Turkish
+
+2009-12-19 Jochen Manz
+	- RELEASE ispCP ω Omega 1.0.3
+	- DOCS:
+		* fixed a small typo in centos-packages file
+
+2009-12-19 Laurent Declercq
+	CONFIGS:
+		* Centos - Couldn't to connect to FTP
+		* Centos - Ftp_choose_dir fail (due to the FTP issue ; see above)
+	DOCS:
+		* Updated OpenSuse INSTALL
+	LANGUAGES:
+		* Updated turkish
+
+2009-12-18 Laurent Declercq
+	- GUI:
+		* Fixed some mistakes related to i18n
+	- LANGUAGES:
+		* Updated ispCP pot file
+		* Updated all *. po files
+		* Updated all INI language files
+
+2009-12-17 Benedikt Heintel
+	- DOCS:
+		* Updated all INSTALL
+	- LANGUAGES:
+		* Updated Swedish
+
+2009-12-17 Laurent Declercq
+	- DOCS:
+		* Updated OpenSuse INSTALL
+	- LANGUAGES:
+		* Fixed: Several errors in *.po files
+	- TOOLS:
+		* Added new script (checkPo) to test all *.po files
+		* Added the check process in the translation README file
+
+2009-12-16 Laurent Declercq
+	- LANGUAGES:
+		* Updated French
+
+2009-12-16 Benedikt Heintel
+	- LANGUAGES:
+		* Updated Basque
+		* Added Lithurnian
+
+2009-12-15 Laurent Declercq
+	- DOCS:
+		* Updated Ubuntu INSTALL
+		* Updated: version 1.0.3 to 1.0.4 in all INSTALL files
 
 2009-12-14 Benedikt Heintel
 	- LANGUAGES:
@@ -26,18 +139,19 @@ ispCP ω 1.1.0 Changelog
 
 2009-12-12 Laurent Declercq
 	- GUI:
-		* Fixed #2099: "unexpected T_IF in /var/www/ispcp/gui/include/input-checks.php on line 261"
-		* Fixed #2101: Clean install Debian Lenny - ispCP 1.1.0 Login Error
 		* Fixed #2094: Redirection to the ispCP tools - Bad regular expression
-		* Fixed #2102: input-checks.php new error
 
 2009-12-12 Benedikt Heintel
-	- DISTS:
-		* Updated: CentOS INSTALL
+	- DOCS:
+		* Updated CentOS INSTALL
 
 2009-12-11 Benedikt Bauer
 	- DISTS:
-		* Updated: Ubuntu packages
+		* Updated Ubuntu packages
+
+2009-12-12 Benedikt Heintel
+	- ENGINE:
+		* Fixed #266: Default 404 page when disable domain
 
 2009-12-11 Laurent Declercq
 	- GUI:
@@ -212,8 +326,8 @@ facilitate the maintenances.
 		* Updated License Text (All Makefile)
 
 2009-11-13 Benedikt Heintel
-        - ENGINE:
-                * Fixed #2051: Again ispcp-dsk-quota message
+	- ENGINE:
+		* Fixed #2051: Again ispcp-dsk-quota message
 	- PACKAGE:
 		* Updated License Text (Engine and Make Files)
 
@@ -282,9 +396,13 @@ facilitate the maintenances.
 		* Updated Japanese
 		* Updated German (Germany)
 
+2009-10-08 Benedikt Heintel
+	- DOCS:
+		* Fixed Pathes on update
+
 2009-10-06 Laurent Declercq
 	- CONFIGS:
-		* Fixed: Pma - impossible indirect connections with suhosin
+		* Fixed: PMA - impossible indirect connections with suhosin
 
 2009-10-05 Laurent Declercq
 	- TOOLS:
@@ -337,7 +455,7 @@ facilitate the maintenances.
 
 2009-09-27 Christian Hernmarck
 	- ENGINE:
-		* Fixed #2008: Alias + Subdomain + SubAlias: not all placeholders filled
+		* Fixed #2008: Alias + Subdomain: not all placeholders filled
 
 2009-09-25 Christian Hernmarck
 	- GUI:
@@ -351,10 +469,6 @@ facilitate the maintenances.
 2009-09-24 Benedikt Heintel
 	- GUI:
 		* Fixed #2006: Delete manual DNS entry on domain aliases
-
-2009-09-24 Laurent Declercq
-	- TOOLS:
-		* Integrating new theme for squirrelmail (Thank to Henriks)
 
 2009-09-23 Benedikt Heintel
 	- GUI:
@@ -375,7 +489,7 @@ facilitate the maintenances.
 	- GUI:
 		* Fixed #1989: Failed database updates are silently ignored
 		* Fixed #2000: Wrong default value for 'USER_INITAL_LANG' configuration variable
-			- Added a new db databaseUpdate (25) to fix the 'user_gui_props.lang' value ('lang_EnglishBritain' instead of 'lang_English')
+			- Added an new db databaseUpdate (25) to fix the 'user_gui_props.lang' value ('lang_EnglishBritain' instead of 'lang_English')
 		* Small fixes
 		* Uninitialized variable ($backup) in "client/hosting_plan_update.php"
 

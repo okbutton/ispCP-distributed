@@ -111,7 +111,7 @@ unset($_SESSION["ch_hpprops"]);
 list($domain_php, $domain_cgi, $sub,
 	$als, $mail, $ftp,
 	$sql_db, $sql_user,
-	$traff, $disk, $domain_dns) = explode(";", $props);
+	$traff, $disk, $backup, $domain_dns) = explode(";", $props);
 
 $domain_php = preg_replace("/\_/", "", $domain_php);
 $domain_cgi = preg_replace("/\_/", "", $domain_cgi);
@@ -193,6 +193,7 @@ if (empty($ed_error)) {
 	if (Config::get('COUNT_DEFAULT_EMAIL_ADDRESSES') == 0) {
 		$umail_max -= $default_mails;
 	}
+
 	$user_props = "$usub_current;$usub_max;";
 	$user_props .= "$uals_current;$uals_max;";
 	$user_props .= "$umail_current;$umail_max;";
@@ -201,9 +202,9 @@ if (empty($ed_error)) {
 	$user_props .= "$usql_user_current;$usql_user_max;";
 	$user_props .= "$utraff_max;";
 	$user_props .= "$udisk_max;";
-	// $user_props .= "$domain_ip;";
 	$user_props .= "$domain_php;";
 	$user_props .= "$domain_cgi;";
+	$user_props .= "$backup;";
 	$user_props .= "$domain_dns";
 	update_user_props($dmn_id, $user_props);
 

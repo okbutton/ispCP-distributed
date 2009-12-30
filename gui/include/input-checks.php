@@ -190,7 +190,7 @@ function chk_password($password, $num = 50, $permitted = "") {
 }
 
 /**
- * Checks validity of the username
+ * chk_username
  *
  * @param String $data username to be checked
  * @param int $max_char number of max. chars
@@ -249,50 +249,7 @@ function validates_username($username, $min_char = 2, $max_char = 30) {
 /**
  * @todo document this function
  */
-function chk_email($email, $num = 60) {
-
-	global $validation_err_msg;
-
-	if (strlen($email) > $num) {
-		return false;
-	}
-
-	// split e-mail address by @ chars
-	$email_part = explode('@', $email);
-
-	// check if at least two parts are available
-	$part_count = count($email_part);
-
-	if ($part_count < 2 || $part_count > 2  ) {
-		$validation_err_msg = "Wrong email: $email";
-		return false;
-	}
-
-	// check the local part (before last @) first
-	if (ispcp_check_local_part($email_part[0], $num)) {
-
-		// now check the domain part
-		if(!validates_dname($email_part[1])) {
-			$validation_err_msg = "Wrong email domain name: {$email_part[1]}";
-			return false;
-		} else {
-			return true;
-		}
-
-	} else {
-		$validation_err_msg = "Wrong email local part: {$email_part[2]}";
-		return false;
-	}
-}
-
-/**
- * Checks validity of an e-mail address' local part
- *
- * @param String $email e-mail address to be checked
- * @param int $num max. length of e-mail address
- * @return boolean true, if correct
- */
-function ispcp_check_local_part($email, $num = 60) {
+function chk_email($email, $num = 50) {
 	if (strlen($email) > $num) {
 		return false;
 	}
@@ -302,7 +259,34 @@ function ispcp_check_local_part($email, $num = 60) {
 	$nqtext = "[^\\\\$nonascii\015\012\"]"; // all not qouteable chars
 	$qchar = "\\\\[^$nonascii]";			// matched quoted chars
 
-	$normuser = '[a-zA-Z0-9!#$%&\'*+-\/=?^_`{|}~]+';
+	$normuser = '[a-zA-Z0-9][a-zA-Z0-9_.-]*';
+	$quotedstring = "\"(?:$nqtext|$qchar)+\"";
+	$user_part = "(?:$normuser|$quotedstring)";
+
+	$dom_mainpart = '[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]\\.';
+	$dom_subpart = '(?:[a-zA-Z0-9][a-zA-Z0-9.-]*\\.)*';
+	$dom_tldpart = '[a-zA-Z]{2,5}';
+	$domain_part = "$dom_subpart$dom_mainpart$dom_tldpart";
+
+	$regex = "$user_part\@$domain_part";
+	// RegEx end
+	return (bool) preg_match("/^$regex$/", $email);
+}
+
+/**
+ * @todo document this function
+ */
+function ispcp_check_local_part($email, $num = 50) {
+	if (strlen($email) > $num) {
+		return false;
+	}
+	// RegEx begin
+	$nonascii = "\x80-\xff"; // non ASCII chars are not allowed
+
+	$nqtext = "[^\\\\$nonascii\015\012\"]";
+	$qchar = "\\\\[^$nonascii]";
+
+	$normuser = "[a-zA-Z0-9][a-zA-Z0-9_.-]*";
 	$quotedstring = "\"(?:$nqtext|$qchar)+\"";
 	$user_part = "(?:$normuser|$quotedstring)";
 
@@ -356,7 +340,7 @@ function validates_dname($dname, $subdname_process = false) {
 		// Check lenght according RFC 1123 (Max of 255 chars)
 		if(strlen($dname) >255)
 		{
-			$validation_err_msg = tr(' Wrong domain name lenght!');
+			$validation_err_msg = tr('Wrong domain name lenght!');
 			return false;
 		}
 	}
@@ -571,7 +555,7 @@ function _validates_tld($tld) {
 				(?:p[aefghklmnrstwy]|pro)|
 				qa|
 				r[eouw]|
-				s[abcdeghijklmnortvyz]|
+				s[abcdeghijklmnortuvyz]|
 				(?:t[cdfghjklmnoprtvwz]|tel|travel)|
 				u[agkmsyz]|
 				v[aceginu]|
