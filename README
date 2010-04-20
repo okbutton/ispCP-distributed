@@ -1,6 +1,9 @@
 ispCP-distributed  ω (OMEGA) a Virtual Hosting Control Panel
 ================================================================
+ispCP-distributed is a fork of the ispCP ω project with a view to creating a system
+that has a more resilient infrastructure support. 
 
+Original ispCP sites are to be found at:
 http://isp-control.com
 http://isp-control.net
 http://isp-control.org
